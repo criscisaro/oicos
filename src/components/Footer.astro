@@ -1,0 +1,43 @@
+---
+import Brand from './Brand.astro';
+import { CONTACT, SITE, STATS } from '../data';
+---
+<footer class="site">
+  <svg class="foot-geo" width="500" height="540" viewBox="0 0 500 540" fill="none" aria-hidden="true"><g stroke="#CBA135" opacity=".16"><circle cx="500" cy="270" r="105"/><circle cx="500" cy="270" r="250"/><circle cx="500" cy="270" r="450"/></g></svg>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="brand" style="cursor:default"><Brand /></span>
+        <p>Amministratori, da oltre {STATS.anni} anni.</p>
+        <div class="partners">
+          <div class="plogos">
+            <img class="plogo" src="/loghi/anapi.png" alt="ANAPI — Associazione Nazionale Amministratori Professionisti d'Immobili" loading="lazy" width="423" height="138" />
+            <img class="plogo" src="/loghi/teamsystem.png" alt="TeamSystem Condomini" loading="lazy" width="1850" height="328" />
+            <img class="plogo" src="/loghi/aiac.png" alt="AIAC — Associazione Italiana Amministratori Condominiali" loading="lazy" width="460" height="128" />
+          </div>
+        </div>
+      </div>
+      <div class="fcol">
+        <h5>Studio</h5>
+        <a href="/#studio">Chi siamo</a>
+        <a href="/#servizi">Servizi</a>
+        <a href="/#portale">Area riservata</a>
+        <a href="/#contatti">Contatti</a>
+      </div>
+      <div class="fcol">
+        <h5>Contatti</h5>
+        <p>{CONTACT.street} — {CONTACT.city}</p>
+        <a href={`tel:${CONTACT.phoneHref}`}>{CONTACT.phone}</a>
+        <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span class="mono">© {new Date().getFullYear()} {SITE.name} — P.IVA {SITE.vat}</span>
+      <div class="links">
+        <a href="/privacy/" class="mono">Privacy</a>
+        <a href="/cookie/" class="mono">Cookie</a>
+        <a href="https://keyapp.it" target="_blank" rel="noopener" class="keyapp">Design — <b>keyapp.it</b></a>
+      </div>
+    </div>
+  </div>
+</footer>

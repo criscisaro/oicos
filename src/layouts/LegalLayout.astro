@@ -1,0 +1,31 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Brand from '../components/Brand.astro';
+import { SITE } from '../data';
+
+interface Props { title: string; description: string; canonical: string; }
+const { title, description, canonical } = Astro.props;
+---
+<BaseLayout title={title} description={description} canonical={canonical} noindex={true}>
+  <header class="topbar">
+    <div class="in">
+      <a class="brand" href="/" aria-label="Oicos — torna alla home"><Brand /></a>
+      <a class="back" href="/"><span class="ar">←</span> Torna al sito</a>
+    </div>
+  </header>
+
+  <main class="doc">
+    <slot />
+  </main>
+
+  <footer class="lfoot">
+    <div class="in">
+      <span class="mono">© {new Date().getFullYear()} {SITE.name} — P.IVA {SITE.vat}</span>
+      <div class="links">
+        <a href="/privacy/">Privacy</a>
+        <a href="/cookie/">Cookie</a>
+        <a href="https://keyapp.it" target="_blank" rel="noopener" class="keyapp">Design — <b>keyapp.it</b></a>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>

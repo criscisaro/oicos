@@ -1,0 +1,55 @@
+---
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import { SITE } from '../../data';
+---
+<LegalLayout
+  title="Cookie Policy — Studio Oicos"
+  description="Informativa sull'uso dei cookie del sito di Studio Oicos — Amministratori condominiali, Ragusa."
+  canonical={`${SITE.url}/cookie/`}
+>
+  <div class="eyebrow">Informativa</div>
+  <h1>Cookie Policy</h1>
+  <div class="updated">Ultimo aggiornamento: giugno 2026</div>
+
+  <div class="note">Questa informativa descrive l'uso dei cookie e di tecnologie simili su questo sito, in conformità alle Linee guida del Garante per la protezione dei dati personali e al Regolamento UE 2016/679.</div>
+
+  <h2><span class="n">01</span>Cosa sono i cookie</h2>
+  <p>I cookie sono piccoli file di testo che i siti visitati inviano al dispositivo dell'utente, dove vengono memorizzati per essere poi ritrasmessi agli stessi siti alla visita successiva. Possono essere utilizzati per finalità diverse: esecuzione di funzioni informatiche, memorizzazione di preferenze, analisi statistica.</p>
+
+  <h2><span class="n">02</span>Tipologie di cookie utilizzati</h2>
+  <h3>Cookie tecnici e necessari</h3>
+  <p>Indispensabili per il corretto funzionamento del sito e per memorizzare le preferenze sul consenso ai cookie. Non richiedono il consenso dell'utente e non possono essere disattivati.</p>
+  <h3>Cookie di statistica</h3>
+  <p>Utilizzati, solo previo consenso, per raccogliere informazioni in forma aggregata sul numero di visitatori e su come il sito viene utilizzato, allo scopo di migliorarlo. Al momento il sito non installa cookie di statistica salvo attivazione esplicita.</p>
+  <h3>Cookie di terze parti</h3>
+  <p>Il sito carica i caratteri tipografici tramite <strong>Google Fonts</strong>: tale servizio può comportare la comunicazione dell'indirizzo IP a Google. Non vengono utilizzati cookie di profilazione o di marketing.</p>
+
+  <h2><span class="n">03</span>Elenco dei cookie</h2>
+  <table class="ctable">
+    <thead><tr><th>Nome</th><th>Tipologia</th><th>Finalità</th><th>Durata</th></tr></thead>
+    <tbody>
+      <tr><td>oicos_cookie_consent</td><td>Tecnico</td><td>Memorizza la scelta sul consenso ai cookie</td><td>Persistente (localStorage)</td></tr>
+      <tr><td>oicos-a11y</td><td>Tecnico</td><td>Memorizza le preferenze di accessibilità</td><td>Persistente (localStorage)</td></tr>
+      <tr><td>Google Fonts</td><td>Terze parti</td><td>Erogazione dei caratteri tipografici</td><td>Sessione / cache</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="n">04</span>Gestione del consenso</h2>
+  <p>Alla prima visita viene mostrato un banner che consente di <strong>accettare</strong> o <strong>rifiutare</strong> i cookie non necessari. La scelta viene memorizzata e può essere modificata in qualsiasi momento cancellando i dati del sito dal browser, dopodiché il banner verrà nuovamente mostrato.</p>
+
+  <h2><span class="n">05</span>Disabilitare i cookie dal browser</h2>
+  <p>È possibile gestire o disabilitare i cookie direttamente dalle impostazioni del proprio browser:</p>
+  <ul>
+    <li><a class="lnk" href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+    <li><a class="lnk" href="https://support.mozilla.org/it/kb/Gestione%20dei%20cookie" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+    <li><a class="lnk" href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+    <li><a class="lnk" href="https://support.microsoft.com/it-it/microsoft-edge" target="_blank" rel="noopener">Microsoft Edge</a></li>
+  </ul>
+  <p>La disabilitazione dei cookie tecnici può compromettere alcune funzionalità del sito.</p>
+
+  <h2><span class="n">06</span>Titolare e contatti</h2>
+  <p>Titolare del trattamento è <strong>Studio Oicos — Amministratori condominiali</strong>, Viale del Fante 10, 97100 Ragusa (RG) — <a class="lnk" href="mailto:studio.oicos@virgilio.it">studio.oicos@virgilio.it</a>. Per ulteriori informazioni sul trattamento dei dati consulta la <a class="lnk" href="/privacy/">Privacy Policy</a>.</p>
+
+  <h2><span class="n">07</span>Aggiornamenti</h2>
+  <p>La presente Cookie Policy può essere aggiornata. Le modifiche saranno pubblicate su questa pagina con l'indicazione della data di ultimo aggiornamento.</p>
+</LegalLayout>

@@ -1,0 +1,108 @@
+---
+import { SEO } from 'astro-seo';
+import '../styles.css';
+import CookieBanner from '../components/CookieBanner.astro';
+import AccessibilityWidget from '../components/AccessibilityWidget.astro';
+import { SITE, CONTACT, STATS } from '../data';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogType?: string;
+  noindex?: boolean;
+}
+
+const { title, description, canonical, ogType = 'website', noindex = false } = Astro.props;
+const image = `${SITE.url}/og-image.jpg`;
+
+// JSON-LD LocalBusiness / ProfessionalService — presente su ogni pagina (SEO + GEO).
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE.url}/#studio`,
+  name: SITE.name,
+  legalName: SITE.legalName,
+  url: SITE.url,
+  image,
+  description,
+  telephone: CONTACT.phoneHref,
+  email: CONTACT.email,
+  foundingDate: SITE.founded,
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: CONTACT.street,
+    postalCode: CONTACT.zip,
+    addressLocality: CONTACT.city,
+    addressRegion: CONTACT.province,
+    addressCountry: CONTACT.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: CONTACT.lat,
+    longitude: CONTACT.lng,
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Provincia di Ragusa',
+  },
+  knowsAbout: [
+    'Amministrazione condominiale',
+    'Gestione condomini',
+    'Contabilità condominiale',
+    'Comunità energetiche rinnovabili',
+    'Recupero crediti condominiali',
+  ],
+  slogan: `Amministratori, da oltre ${STATS.anni} anni.`,
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '19:00',
+  },
+};
+---
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <meta name="theme-color" content="#012622" />
+  <SEO
+    title={title}
+    description={description}
+    canonical={canonical}
+    noindex={noindex}
+    nofollow={false}
+    openGraph={{
+      basic: { title, type: ogType, image, url: canonical },
+      optional: { description, locale: 'it_IT', siteName: SITE.name },
+      image: { alt: 'Studio Oicos — Amministratori condominiali, Ragusa' },
+    }}
+    twitter={{ card: 'summary_large_image', title, description, image, imageAlt: 'Studio Oicos — Ragusa' }}
+    extend={{
+      link: [{ rel: 'sitemap', href: '/sitemap-index.xml' }],
+      meta: [
+        { name: 'author', content: 'Studio Oicos — design keyapp.it' },
+        { name: 'geo.region', content: 'IT-RG' },
+        { name: 'geo.placename', content: 'Ragusa' },
+        { name: 'geo.position', content: `${CONTACT.lat};${CONTACT.lng}` },
+        { name: 'ICBM', content: `${CONTACT.lat}, ${CONTACT.lng}` },
+      ],
+    }}
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(orgSchema)} />
+  <slot name="head" />
+</head>
+<body id="top">
+  <slot />
+  <CookieBanner />
+  <AccessibilityWidget />
+</body>
+</html>

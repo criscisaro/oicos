@@ -1,0 +1,29 @@
+---
+// Banner cookie minimale (tecnici + statistica su consenso). Consenso in localStorage.
+---
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Preferenze cookie">
+  <p>Usiamo cookie tecnici necessari e, solo con il tuo consenso, cookie di statistica. Dettagli nella <a href="/cookie/">Cookie policy</a>.</p>
+  <div class="cb-actions">
+    <button class="btn" type="button" data-cookie="reject">Rifiuta</button>
+    <button class="btn btn--solid" type="button" data-cookie="accept">Accetta</button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = 'oicos_cookie_consent';
+    var b = document.getElementById('cookieBanner');
+    if (!b) return;
+    var root = document.documentElement;
+    function hide() { b.classList.remove('show'); root.classList.remove('cookie-active'); }
+    if (!localStorage.getItem(KEY)) {
+      setTimeout(function () { b.classList.add('show'); root.classList.add('cookie-active'); }, 900);
+    }
+    b.querySelectorAll('[data-cookie]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        try { localStorage.setItem(KEY, btn.getAttribute('data-cookie')); } catch (e) {}
+        hide();
+      });
+    });
+  })();
+</script>

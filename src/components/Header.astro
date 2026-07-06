@@ -1,0 +1,24 @@
+---
+import Brand from './Brand.astro';
+import { NAV } from '../data';
+---
+<header class="site" id="hdr">
+  <div class="wrap nav">
+    <a class="brand" href="/#top" aria-label="Oicos — Amministratori condominiali">
+      <Brand />
+    </a>
+    <nav aria-label="Principale"><ul>
+      {NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+    </ul></nav>
+    <div class="nav-cta">
+      <a href="/#contatti" class="btn">Sentiamoci</a>
+      <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile" id="mobile">
+  <button class="mclose" id="mclose">CHIUDI ✕</button>
+  {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
+  <a href="/#contatti" class="btn btn--solid">Sentiamoci →</a>
+</div>

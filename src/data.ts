@@ -49,10 +49,8 @@ export const SERVIZI = [
   { n: '06', t: 'Sicurezza e adempimenti', d: 'Antincendio, ascensori e impianti: ogni obbligo di legge sempre in regola.' },
   { n: '07', t: 'Fiscalità e bonus edilizi', d: 'Detrazioni, bonus, pratiche ENEA e adempimenti fiscali del condominio.' },
   { n: '08', t: 'Portale digitale', d: 'Documenti, bilanci e comunicazioni online, accessibili h24 da ogni dispositivo.' },
-  { n: '09', t: 'Comunità energetiche (CER)', d: 'Costituzione e gestione di Comunità Energetiche Rinnovabili: produrre e condividere energia pulita tra i condòmini.' },
-  { n: '10', t: 'Gestione immobili e locazioni', d: 'Amministrazione di proprietà per conto terzi: locazioni, adempimenti e rapporti con gli inquilini.' },
-  { n: '11', t: 'Revisione contabile', d: 'Controllo e revisione dei bilanci condominiali per una situazione economica chiara e verificata.' },
-  { n: '12', t: 'Consulenza legale', d: 'Assistenza su ogni questione condominiale, con studi legali specializzati a supporto.' },
+  { n: '09', t: 'Gestione immobili e locazioni', d: 'Amministrazione di proprietà per conto terzi: locazioni, adempimenti e rapporti con gli inquilini.' },
+  { n: '10', t: 'Consulenza legale', d: 'Assistenza su ogni questione condominiale, con studi legali specializzati a supporto.' },
 ];
 
 export const FAQ = [

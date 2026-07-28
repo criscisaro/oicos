@@ -89,14 +89,15 @@ nav ul li a:hover{color:var(--gold)}nav ul li a:hover::after{width:100%}
 
 /* SERVIZI */
 .servizi{background:linear-gradient(180deg,transparent,rgba(194,212,223,.55) 20%,rgba(194,212,223,.55) 80%,transparent)}
-.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);max-width:1000px;margin:0 auto;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+/* 10 servizi → 5 colonne = 2 righe piene (card larghe come prima: 1250/5 = 1000/4 = 250px) */
+.svc-grid{display:grid;grid-template-columns:repeat(5,1fr);max-width:1250px;margin:0 auto;border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .svc{position:relative;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 22px 32px;transition:background .35s;min-height:200px;display:flex;flex-direction:column}
 .svc:hover{background:var(--paper)}
 .svc .idx{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:9px}
 .svc .idx::before{content:"";width:7px;height:7px;border:1px solid var(--gold);transform:rotate(45deg)}
 .svc h3{font-family:var(--display);font-weight:600;font-size:1.12rem;letter-spacing:-.02em;margin:0 0 10px;line-height:1.18;min-height:2.65em}
 .svc p{font-size:.92rem;color:var(--ink-soft);line-height:1.58}
-@media(max-width:1000px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1080px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.svc-grid{grid-template-columns:1fr}.svc{min-height:auto}}
 
 /* PORTALE */

@@ -149,8 +149,8 @@ const faqRight = FAQ.slice(4);
           </div>
           <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" required placeholder="nome@email.it"></div>
           <div class="field"><label for="f-msg">Il tuo condominio</label><textarea id="f-msg" required placeholder="Quante unità, dove si trova, cosa cerchi..."></textarea></div>
-          <button class="btn btn--solid formbtn" type="submit">Invia la richiesta <span class="ar">→</span></button>
-          <p class="formnote">Inviando accetti il trattamento dei dati secondo la <a href="/privacy/">privacy policy</a>. Nessuna newsletter, nessuno spam.</p>
+          <button class="btn btn--solid formbtn" type="submit">Prepara l'email <span class="ar">→</span></button>
+          <p class="formnote">Si aprirà il tuo programma di posta con il messaggio già compilato. Proseguendo accetti il trattamento dei dati secondo la <a href="/privacy/">privacy policy</a>.</p>
         </form>
       </div>
     </div>
@@ -184,8 +184,23 @@ const faqRight = FAQ.slice(4);
     if (form) form.addEventListener('submit', function (e) {
       e.preventDefault();
       var b = form.querySelector('button[type=submit]');
-      b.innerHTML = 'Richiesta inviata ✓'; b.style.background = 'var(--gold)'; b.style.borderColor = 'var(--gold)'; b.style.color = 'var(--ink)';
-      setTimeout(function () { form.reset(); b.innerHTML = 'Invia la richiesta <span class="ar">→</span>'; b.style.background = ''; b.style.borderColor = ''; b.style.color = ''; }, 2600);
+      var nome = document.getElementById('f-nome').value.trim();
+      var telefono = document.getElementById('f-tel').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      var messaggio = document.getElementById('f-msg').value.trim();
+      var subject = 'Richiesta dal sito Oicos — ' + nome;
+      var body = [
+        'Nome e cognome: ' + nome,
+        'Telefono: ' + (telefono || 'Non indicato'),
+        'Email: ' + email,
+        '',
+        'Messaggio:',
+        messaggio,
+      ].join('\n');
+
+      b.innerHTML = 'Apri il programma email…';
+      window.location.href = 'mailto:studio.oicos@virgilio.it?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      setTimeout(function () { b.innerHTML = 'Prepara l\'email <span class="ar">→</span>'; }, 1800);
     });
 
     var t = document.getElementById('toTop');

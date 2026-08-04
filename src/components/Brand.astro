@@ -1,16 +1,9 @@
----
-// Lettering "OICOS" con la prima O resa a cerchi concentrici (richiamo al logo).
-interface Props { tag?: string; }
-const { tag = 'Amministratori' } = Astro.props;
----
-<span class="brand-tx">
-  <span class="name">
-    <span class="o-mark" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10.5" stroke="currentColor" stroke-width="1.7" />
-        <circle cx="12" cy="12" r="5.6" stroke="var(--gold)" stroke-width="1.6" />
-        <circle cx="12" cy="12" r="1.5" fill="var(--gold)" />
-      </svg>
-    </span>ICOS</span>
-  <span class="tag">{tag}</span>
+<span class="brand-logo-wrap">
+  <img
+    class="brand-logo"
+    src="/oicos-logo.png"
+    alt="Oicos — Amministrazioni immobiliari"
+    width="1200"
+    height="414"
+  />
 </span>

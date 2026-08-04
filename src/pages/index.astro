@@ -4,30 +4,15 @@ import WorldGeo from '../components/WorldGeo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FloatingButtons from '../components/FloatingButtons.astro';
-import { SITE, CONTACT, STATS, SERVIZI, FAQ } from '../data';
+import { SITE, CONTACT, STATS, SERVIZI } from '../data';
 
 const title = 'Studio Oicos — Amministratori condominiali · Ragusa';
 const description =
   'Studio Oicos amministra condomìni di ogni tipologia in provincia di Ragusa da oltre trent\'anni: gestione trasparente, contabilità chiara e un portale digitale sempre accessibile.';
 const canonical = `${SITE.url}/`;
 
-// FAQPage JSON-LD (rich result + GEO answer engines)
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: FAQ.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
-const faqLeft = FAQ.slice(0, 4);
-const faqRight = FAQ.slice(4);
 ---
 <BaseLayout title={title} description={description} canonical={canonical}>
-  <script type="application/ld+json" is:inline slot="head" set:html={JSON.stringify(faqSchema)} />
-
   <WorldGeo />
   <Header />
 
@@ -105,30 +90,6 @@ const faqRight = FAQ.slice(4);
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="sec faq" id="faq">
-    <span class="wc" style="width:170px;height:130px;top:12%;left:7%"></span>
-    <span class="geomark" style="width:54px;height:54px;top:18%;right:9%"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="rgba(95,117,142,.32)" stroke-width="1.2"/><circle cx="24" cy="24" r="13" stroke="rgba(203,161,53,.42)" stroke-width="1.2"/><circle cx="24" cy="24" r="4" fill="rgba(203,161,53,.42)"/></svg></span>
-    <div class="wrap">
-      <div class="head rv">
-        <div class="eyebrow"><span class="bar"></span><span class="mono">Domande frequenti</span><span class="bar"></span></div>
-        <h2>Le risposte alle domande <b>più comuni.</b></h2>
-      </div>
-      <div class="faq-list rv">
-        <div class="faq-col">
-          {faqLeft.map((f) => (
-            <details class="faq-item"><summary>{f.q}</summary><div class="faq-a">{f.a}</div></details>
-          ))}
-        </div>
-        <div class="faq-col">
-          {faqRight.map((f) => (
-            <details class="faq-item"><summary>{f.q}</summary><div class="faq-a">{f.a}</div></details>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CONTATTI -->
   <section class="sec contatti" id="contatti">
     <span class="wc wc-2" style="width:190px;height:150px;bottom:12%;right:7%"></span>
@@ -142,9 +103,9 @@ const faqRight = FAQ.slice(4);
       <div class="cont-grid">
         <div class="cinfo rv">
           <div class="cline"><div class="ck">Studio</div><div class="cv">{CONTACT.street}<span>{CONTACT.zip} {CONTACT.city} ({CONTACT.province})</span></div></div>
-          <div class="cline"><div class="ck">Telefono</div><div class="cv"><a href={`tel:${CONTACT.phoneHref}`}>{CONTACT.phone}</a><span><a href={`tel:${CONTACT.mobileHref}`}>{CONTACT.mobile}</a></span></div></div>
+          <div class="cline"><div class="ck">Telefono</div><div class="cv"><a href={`tel:${CONTACT.phoneHref}`}>{CONTACT.phone}</a></div></div>
           <div class="cline"><div class="ck">Email</div><div class="cv"><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></div></div>
-          <div class="cline"><div class="ck">Orari</div><div class="cv">{CONTACT.hoursLabel}<span>{CONTACT.hours}</span></div></div>
+          <div class="cline"><div class="ck">Orari</div><div class="cv hours-list">{CONTACT.hours.map((row) => <span><strong>{row.days}</strong>{row.time}</span>)}</div></div>
         </div>
         <form class="rv" id="cform">
           <div class="f2">
@@ -213,7 +174,7 @@ const faqRight = FAQ.slice(4);
         status.textContent = 'Grazie! La richiesta è stata inviata allo Studio Oicos.';
       }).catch(function () {
         status.className = 'formstatus error';
-        status.innerHTML = 'Non siamo riusciti a inviare la richiesta. Puoi scriverci a <a href="mailto:studio.oicos@virgilio.it">studio.oicos@virgilio.it</a>.';
+        status.innerHTML = 'Non siamo riusciti a inviare la richiesta. Puoi scriverci a <a href="mailto:studio.oicos@gmail.com">studio.oicos@gmail.com</a>.';
       }).finally(function () {
         b.disabled = false;
         b.innerHTML = 'Invia la richiesta <span class="ar">→</span>';

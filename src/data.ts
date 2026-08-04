@@ -21,7 +21,7 @@ export const CONTACT = {
   whatsapp: '393315088223',
   email: 'studio.oicos@virgilio.it',
   hoursLabel: 'Lun — Ven',
-  hours: '9:00 – 13:00 · 16:00 – 19:00',
+  hours: '09:00 – 13:00 · 16:00 – 19:00',
   // Coordinate città di Ragusa (livello comunale, per geo/LocalBusiness)
   lat: 36.9269,
   lng: 14.7255,

@@ -38,8 +38,12 @@ const faqRight = FAQ.slice(4);
     <div class="wrap hero-inner">
       <div class="hero-text">
         <div class="hero-eyebrow"><span>Studio Oicos</span></div>
-        <h1>Amministriamo condomini</h1>
+        <h1>Amministriamo condomìni <span>a Ragusa.</span></h1>
         <div><span class="chip">Da oltre trent'anni.</span></div>
+        <div class="hero-actions">
+          <a href="#contatti" class="btn btn--solid">Richiedi un preventivo <span class="ar">→</span></a>
+          <a href={`tel:${CONTACT.phoneHref}`} class="btn">Chiama lo studio</a>
+        </div>
         <p class="hero-etym">«Oicos» viene dal greco <span class="gr">οἶκος</span>, «casa»: la stessa radice di <b>economia</b> — οἶκος (casa) + νόμος (regola), «le regole della casa». Amministrare un condominio è esattamente questo.</p>
       </div>
     </div>
@@ -144,13 +148,15 @@ const faqRight = FAQ.slice(4);
         </div>
         <form class="rv" id="cform">
           <div class="f2">
-            <div class="field"><label for="f-nome">Nome e cognome</label><input id="f-nome" type="text" required placeholder="Mario Rossi"></div>
-            <div class="field"><label for="f-tel">Telefono</label><input id="f-tel" type="tel" placeholder="3xx xxx xxxx"></div>
+            <div class="field"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="name" type="text" required maxlength="120" autocomplete="name" placeholder="Mario Rossi"></div>
+            <div class="field"><label for="f-tel">Telefono</label><input id="f-tel" name="phone" type="tel" maxlength="40" autocomplete="tel" placeholder="3xx xxx xxxx"></div>
           </div>
-          <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" required placeholder="nome@email.it"></div>
-          <div class="field"><label for="f-msg">Il tuo condominio</label><textarea id="f-msg" required placeholder="Quante unità, dove si trova, cosa cerchi..."></textarea></div>
-          <button class="btn btn--solid formbtn" type="submit">Prepara l'email <span class="ar">→</span></button>
-          <p class="formnote">Si aprirà il tuo programma di posta con il messaggio già compilato. Proseguendo accetti il trattamento dei dati secondo la <a href="/privacy/">privacy policy</a>.</p>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required maxlength="160" autocomplete="email" placeholder="nome@email.it"></div>
+          <div class="field"><label for="f-msg">Il tuo condominio</label><textarea id="f-msg" name="message" required maxlength="4000" placeholder="Quante unità, dove si trova, cosa cerchi..."></textarea></div>
+          <div class="hp-field" aria-hidden="true"><label for="f-website">Sito web</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <button class="btn btn--solid formbtn" type="submit">Invia la richiesta <span class="ar">→</span></button>
+          <p class="formstatus" id="formstatus" role="status" aria-live="polite"></p>
+          <p class="formnote">Inviando accetti il trattamento dei dati secondo la <a href="/privacy/">privacy policy</a>. Nessuna newsletter, nessuno spam.</p>
         </form>
       </div>
     </div>
@@ -184,23 +190,34 @@ const faqRight = FAQ.slice(4);
     if (form) form.addEventListener('submit', function (e) {
       e.preventDefault();
       var b = form.querySelector('button[type=submit]');
+      var status = document.getElementById('formstatus');
       var nome = document.getElementById('f-nome').value.trim();
       var telefono = document.getElementById('f-tel').value.trim();
       var email = document.getElementById('f-email').value.trim();
       var messaggio = document.getElementById('f-msg').value.trim();
-      var subject = 'Richiesta dal sito Oicos — ' + nome;
-      var body = [
-        'Nome e cognome: ' + nome,
-        'Telefono: ' + (telefono || 'Non indicato'),
-        'Email: ' + email,
-        '',
-        'Messaggio:',
-        messaggio,
-      ].join('\n');
+      var website = document.getElementById('f-website').value.trim();
 
-      b.innerHTML = 'Apri il programma email…';
-      window.location.href = 'mailto:studio.oicos@virgilio.it?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      setTimeout(function () { b.innerHTML = 'Prepara l\'email <span class="ar">→</span>'; }, 1800);
+      b.disabled = true;
+      b.innerHTML = 'Invio in corso…';
+      status.className = 'formstatus';
+      status.textContent = '';
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: nome, phone: telefono, email: email, message: messaggio, website: website }),
+      }).then(function (response) {
+        if (!response.ok) throw new Error('Invio non riuscito');
+        form.reset();
+        status.className = 'formstatus success';
+        status.textContent = 'Grazie! La richiesta è stata inviata allo Studio Oicos.';
+      }).catch(function () {
+        status.className = 'formstatus error';
+        status.innerHTML = 'Non siamo riusciti a inviare la richiesta. Puoi scriverci a <a href="mailto:studio.oicos@virgilio.it">studio.oicos@virgilio.it</a>.';
+      }).finally(function () {
+        b.disabled = false;
+        b.innerHTML = 'Invia la richiesta <span class="ar">→</span>';
+      });
     });
 
     var t = document.getElementById('toTop');

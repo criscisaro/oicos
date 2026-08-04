@@ -184,19 +184,6 @@ footer.site{background:var(--ink);color:var(--paper);padding:clamp(56px,7vw,88px
 
 /* bottoni in Lo studio */
 .actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:32px}
-/* HOMEPAGE SINTETICA */
-.home-intro{overflow:hidden;background:linear-gradient(180deg,transparent,rgba(210,222,229,.52) 22%,rgba(210,222,229,.52) 78%,transparent)}
-.home-intro .wrap{position:relative;z-index:1}
-.home-paths{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.home-path{position:relative;min-height:300px;padding:clamp(28px,4vw,46px);border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start;transition:background .35s,transform .35s}
-.home-path:hover{background:rgba(247,249,251,.72)}
-.home-path-n{position:absolute;right:24px;top:24px;font-family:var(--mono);font-size:.68rem;color:var(--gold);letter-spacing:.12em}
-.home-path .mono{color:var(--gold);margin-bottom:24px}
-.home-path h2{font-family:var(--display);font-size:clamp(1.5rem,2.8vw,2.25rem);line-height:1.08;letter-spacing:-.03em;font-weight:600;margin-bottom:14px}
-.home-path p{color:var(--ink-soft);max-width:42ch;font-size:.96rem;line-height:1.65}
-.home-path-link{margin-top:auto;padding-top:28px;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);display:inline-flex;gap:10px;align-items:center}
-.home-path-link span{color:var(--gold);transition:transform .25s}.home-path:hover .home-path-link span{transform:translateX(4px)}
-
 /* PAGINE PRINCIPALI */
 .interior-page{padding-top:80px;min-height:100svh}
 .page-hero{position:relative;overflow:hidden;padding:clamp(78px,10vw,140px) 0;background:linear-gradient(155deg,rgba(247,249,251,.96),rgba(210,222,229,.62))}
@@ -305,7 +292,6 @@ footer.site{background:var(--ink);color:var(--paper);padding:clamp(56px,7vw,88px
   .studio-stats{grid-template-columns:repeat(2,1fr)}.studio-stats div:nth-child(2){border-right:0}.studio-stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}
 }
 @media(max-width:700px){
-  .home-paths{grid-template-columns:1fr}.home-path{min-height:270px}
   .page-cta{align-items:flex-start;flex-direction:column}
 }
 @media(max-width:560px){

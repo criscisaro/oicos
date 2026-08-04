@@ -30,7 +30,7 @@ const canonical = `${SITE.url}/contatti/`;
         <div class="cinfo rv">
           <div class="cline"><div class="ck">Studio</div><div class="cv">{CONTACT.street}<span>{CONTACT.zip} {CONTACT.city} ({CONTACT.province})</span></div></div>
           <div class="cline"><div class="ck">Telefono</div><div class="cv"><a href={`tel:${CONTACT.phoneHref}`}>{CONTACT.phone}</a></div></div>
-          <div class="cline"><div class="ck">Email</div><div class="cv"><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></div></div>
+          <div class="cline"><div class="ck">Email</div><div class="cv">{CONTACT.email}</div></div>
           <div class="cline"><div class="ck">Orari</div><div class="cv hours-list">{CONTACT.hours.map((row) => <span><strong>{row.days}</strong>{row.time}</span>)}</div></div>
         </div>
         <form class="rv" id="cform">

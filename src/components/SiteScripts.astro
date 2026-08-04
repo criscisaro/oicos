@@ -66,7 +66,7 @@
         status.textContent = 'Grazie! La richiesta è stata inviata allo Studio Oicos.';
       }).catch(function () {
         status.className = 'formstatus error';
-        status.innerHTML = 'Non siamo riusciti a inviare la richiesta. Puoi scriverci a <a href="mailto:studio.oicos@gmail.com">studio.oicos@gmail.com</a>.';
+        status.textContent = 'Non siamo riusciti a inviare la richiesta. Puoi scriverci a studio.oicos@gmail.com.';
       }).finally(function () {
         button.disabled = false;
         button.innerHTML = 'Invia la richiesta <span class="ar">→</span>';

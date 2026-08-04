@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingButtons from '../../components/FloatingButtons.astro';
+import { SITE, CONTACT, STATS } from '../../data';
+
+const title = 'Contatti e preventivi — Studio Oicos · Ragusa';
+const description =
+  'Contatta Studio Oicos a Ragusa per informazioni sull’amministrazione condominiale o per richiedere un preventivo.';
+const canonical = `${SITE.url}/contatti/`;
+---
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Header />
+  <main class="interior-page contact-page">
+    <section class="page-hero page-hero--contact">
+      <span class="wc wc-2" style="width:190px;height:150px;bottom:12%;right:7%"></span>
+      <span class="greekword" style="top:24%;right:8%;font-size:1.3rem">οἶκος</span>
+      <div class="wrap">
+        <div class="page-hero-copy page-hero-copy--center rv">
+          <div class="eyebrow"><span class="bar"></span><span class="mono">Contatti</span><span class="bar"></span></div>
+          <h1>Parliamo del tuo <b>condominio.</b></h1>
+          <p>Unisciti a oltre {STATS.condomini} condomìni gestiti a Ragusa, più di {STATS.utenti} utenti serviti e {STATS.unita} unità immobiliari.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec contatti contact-page-body">
+      <div class="wrap cont-grid">
+        <div class="cinfo rv">
+          <div class="cline"><div class="ck">Studio</div><div class="cv">{CONTACT.street}<span>{CONTACT.zip} {CONTACT.city} ({CONTACT.province})</span></div></div>
+          <div class="cline"><div class="ck">Telefono</div><div class="cv"><a href={`tel:${CONTACT.phoneHref}`}>{CONTACT.phone}</a></div></div>
+          <div class="cline"><div class="ck">Email</div><div class="cv"><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></div></div>
+          <div class="cline"><div class="ck">Orari</div><div class="cv hours-list">{CONTACT.hours.map((row) => <span><strong>{row.days}</strong>{row.time}</span>)}</div></div>
+        </div>
+        <form class="rv" id="cform">
+          <div class="f2">
+            <div class="field"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="name" type="text" required maxlength="120" autocomplete="name" placeholder="Mario Rossi"></div>
+            <div class="field"><label for="f-tel">Telefono</label><input id="f-tel" name="phone" type="tel" maxlength="40" autocomplete="tel" placeholder="3xx xxx xxxx"></div>
+          </div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required maxlength="160" autocomplete="email" placeholder="nome@email.it"></div>
+          <div class="field"><label for="f-msg">Il tuo condominio</label><textarea id="f-msg" name="message" required maxlength="4000" placeholder="Quante unità, dove si trova, cosa cerchi..."></textarea></div>
+          <div class="hp-field" aria-hidden="true"><label for="f-website">Sito web</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <button class="btn btn--solid formbtn" type="submit">Invia la richiesta <span class="ar">→</span></button>
+          <p class="formstatus" id="formstatus" role="status" aria-live="polite"></p>
+          <p class="formnote">Inviando accetti il trattamento dei dati secondo la <a href="/privacy/">privacy policy</a>. Nessuna newsletter, nessuno spam.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <FloatingButtons />
+</BaseLayout>

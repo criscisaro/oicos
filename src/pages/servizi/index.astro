@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingButtons from '../../components/FloatingButtons.astro';
+import { SITE, SERVIZI } from '../../data';
+
+const title = 'Servizi di amministrazione condominiale — Studio Oicos';
+const description =
+  'I servizi dello Studio Oicos a Ragusa: amministrazione, contabilità, assemblee, manutenzioni, sicurezza, fiscalità, locazioni e consulenza legale.';
+const canonical = `${SITE.url}/servizi/`;
+---
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Header />
+  <main class="interior-page">
+    <section class="page-hero page-hero--services">
+      <span class="geomark" style="width:64px;height:64px;top:24%;right:9%"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" stroke="rgba(95,117,142,.3)" stroke-width="1.2"/><circle cx="24" cy="24" r="13" stroke="rgba(203,161,53,.4)" stroke-width="1.2"/><circle cx="24" cy="24" r="4" fill="rgba(203,161,53,.4)"/></svg></span>
+      <div class="wrap page-hero-grid">
+        <div class="page-hero-copy rv">
+          <div class="eyebrow"><span class="bar"></span><span class="mono">Servizi</span></div>
+          <h1>Tutto ciò che un condominio <b>richiede.</b></h1>
+          <p>Dalla gestione quotidiana alla tutela degli interessi comuni: un unico interlocutore per ogni esigenza dell’edificio.</p>
+          <div class="page-actions"><a href="/contatti/" class="btn btn--solid">Richiedi un preventivo <span class="ar">→</span></a></div>
+        </div>
+        <aside class="page-index rv"><strong>10</strong><span>ambiti di servizio per una gestione completa</span></aside>
+      </div>
+    </section>
+
+    <section class="sec servizi services-page-grid">
+      <span class="wc wc-2" style="width:200px;height:155px;bottom:8%;left:6%"></span>
+      <div class="wrap">
+        <div class="svc-grid rv">
+          {SERVIZI.map((service) => (
+            <article class="svc"><div class="idx">{service.n}</div><h2>{service.t}</h2><p>{service.d}</p></article>
+          ))}
+        </div>
+        <div class="page-cta rv">
+          <div><span class="mono">Hai un’esigenza specifica?</span><h2>Parliamone direttamente.</h2></div>
+          <a href="/contatti/" class="btn btn--solid">Contatta lo studio <span class="ar">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <FloatingButtons />
+</BaseLayout>

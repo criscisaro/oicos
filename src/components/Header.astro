@@ -1,17 +1,19 @@
 ---
 import Brand from './Brand.astro';
 import { NAV } from '../data';
+
+const currentPath = Astro.url.pathname;
 ---
 <header class="site" id="hdr">
   <div class="wrap nav">
-    <a class="brand" href="/#top" aria-label="Oicos — Amministratori condominiali">
+    <a class="brand" href="/" aria-label="Oicos — Amministratori condominiali">
       <Brand />
     </a>
     <nav aria-label="Principale"><ul>
-      {NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+      {NAV.map((n) => <li><a href={n.href} class:list={{ active: currentPath === n.href }} aria-current={currentPath === n.href ? 'page' : undefined}>{n.label}</a></li>)}
     </ul></nav>
     <div class="nav-cta">
-      <a href="/#contatti" class="btn">Sentiamoci</a>
+      <a href="/contatti/" class:list={['btn', { active: currentPath === '/contatti/' }]} aria-current={currentPath === '/contatti/' ? 'page' : undefined}>Sentiamoci</a>
       <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -19,6 +21,6 @@ import { NAV } from '../data';
 
 <div class="mobile" id="mobile">
   <button class="mclose" id="mclose">CHIUDI ✕</button>
-  {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
-  <a href="/#contatti" class="btn btn--solid">Sentiamoci →</a>
+  {NAV.map((n) => <a href={n.href} aria-current={currentPath === n.href ? 'page' : undefined}>{n.label}</a>)}
+  <a href="/contatti/" class="btn btn--solid" aria-current={currentPath === '/contatti/' ? 'page' : undefined}>Sentiamoci →</a>
 </div>

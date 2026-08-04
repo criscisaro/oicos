@@ -34,9 +34,9 @@ export const STATS = {
 };
 
 export const NAV = [
-  { href: '/#studio', label: 'Studio' },
-  { href: '/#servizi', label: 'Servizi' },
-  { href: '/#portale', label: 'Area riservata' },
+  { href: '/studio/', label: 'Studio' },
+  { href: '/servizi/', label: 'Servizi' },
+  { href: '/area-riservata/', label: 'Area riservata' },
   { href: '/faq/', label: 'FAQ' },
 ];
 

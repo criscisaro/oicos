@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingButtons from '../../components/FloatingButtons.astro';
+import { SITE, STATS } from '../../data';
+
+const title = 'Lo studio — Studio Oicos · Ragusa';
+const description =
+  'Conosci Studio Oicos: oltre trent’anni di esperienza nell’amministrazione di condomìni residenziali, commerciali, misti e supercondomìni a Ragusa.';
+const canonical = `${SITE.url}/studio/`;
+
+const principles = [
+  { n: '01', title: 'Ordine', text: 'Scadenze, documenti e attività vengono gestiti con metodo, continuità e attenzione.' },
+  { n: '02', title: 'Trasparenza', text: 'Informazioni chiare e tracciabilità aiutano ogni condòmino a comprendere la gestione.' },
+  { n: '03', title: 'Competenza', text: 'L’esperienza maturata sul territorio guida le scelte quotidiane e quelle più complesse.' },
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Header />
+  <main class="interior-page">
+    <section class="page-hero page-hero--studio">
+      <span class="wc" style="width:190px;height:145px;top:20%;right:8%"></span>
+      <span class="greekword" style="bottom:13%;right:10%;font-size:1.6rem">οἶκος</span>
+      <div class="wrap page-hero-grid">
+        <div class="page-hero-copy rv">
+          <div class="eyebrow"><span class="bar"></span><span class="mono">Lo studio</span></div>
+          <h1>L’esperienza di <b>oltre trent’anni</b> di amministrazione.</h1>
+          <p>Oicos amministra condomìni di ogni tipologia in provincia di Ragusa — residenziali, commerciali, misti e supercondomìni — con ordine, trasparenza e competenza.</p>
+          <div class="page-actions"><a href="/contatti/" class="btn btn--solid">Sentiamoci <span class="ar">→</span></a><a href="/servizi/" class="btn">Scopri i servizi</a></div>
+        </div>
+        <aside class="page-quote rv">
+          <span class="gr">οἶκος</span>
+          <p>Dal greco, «casa». La stessa radice di economia: le regole della casa.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sec studio-detail">
+      <div class="wrap">
+        <div class="detail-lead rv">
+          <span class="mono">Il nostro metodo</span>
+          <h2>Amministrare significa far funzionare ogni parte <b>come un insieme.</b></h2>
+          <p>La gestione quotidiana richiede precisione, ascolto e capacità di coordinare persone, fornitori, obblighi e risorse. Lo Studio Oicos affronta ogni incarico con un metodo costruito nel tempo e adattato alle caratteristiche dello stabile.</p>
+        </div>
+        <div class="principles rv">
+          {principles.map((principle) => (
+            <article class="principle">
+              <span>{principle.n}</span>
+              <h3>{principle.title}</h3>
+              <p>{principle.text}</p>
+            </article>
+          ))}
+        </div>
+        <div class="studio-stats rv" aria-label="Numeri dello studio">
+          <div><strong>{STATS.condomini}+</strong><span>condomìni gestiti</span></div>
+          <div><strong>{STATS.utenti}+</strong><span>utenti serviti</span></div>
+          <div><strong>{STATS.unita}+</strong><span>unità immobiliari</span></div>
+          <div><strong>{STATS.anni}+</strong><span>anni di esperienza</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <FloatingButtons />
+</BaseLayout>

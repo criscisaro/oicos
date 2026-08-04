@@ -1,0 +1,87 @@
+<script is:inline>
+  (function () {
+    var legacyRoutes = {
+      '#studio': '/studio/',
+      '#servizi': '/servizi/',
+      '#portale': '/area-riservata/',
+      '#contatti': '/contatti/'
+    };
+    if (window.location.pathname === '/' && legacyRoutes[window.location.hash]) {
+      window.location.replace(legacyRoutes[window.location.hash]);
+      return;
+    }
+
+    var header = document.getElementById('hdr');
+    if (header) {
+      var updateHeader = function () { header.classList.toggle('scrolled', window.scrollY > 40); };
+      updateHeader();
+      window.addEventListener('scroll', updateHeader, { passive: true });
+    }
+
+    var mobile = document.getElementById('mobile');
+    var burger = document.getElementById('burger');
+    var closeMenu = document.getElementById('mclose');
+    if (mobile && burger && closeMenu) {
+      burger.addEventListener('click', function () { mobile.classList.add('open'); burger.setAttribute('aria-expanded', 'true'); });
+      closeMenu.addEventListener('click', function () { mobile.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); });
+      mobile.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', function () { mobile.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }); });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('in'); observer.unobserve(entry.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.rv').forEach(function (element) { observer.observe(element); });
+    } else {
+      document.querySelectorAll('.rv').forEach(function (element) { element.classList.add('in'); });
+    }
+
+    var portalDemo = document.getElementById('portalDemo');
+    if (portalDemo) portalDemo.addEventListener('click', function () { alert('Demo — il portale verrà collegato al gestionale dello studio.'); });
+
+    var form = document.getElementById('cform');
+    if (form) form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var button = form.querySelector('button[type=submit]');
+      var status = document.getElementById('formstatus');
+      var name = document.getElementById('f-nome').value.trim();
+      var phone = document.getElementById('f-tel').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      var message = document.getElementById('f-msg').value.trim();
+      var website = document.getElementById('f-website').value.trim();
+
+      button.disabled = true;
+      button.innerHTML = 'Invio in corso…';
+      status.className = 'formstatus';
+      status.textContent = '';
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, phone: phone, email: email, message: message, website: website })
+      }).then(function (response) {
+        if (!response.ok) throw new Error('Invio non riuscito');
+        form.reset();
+        status.className = 'formstatus success';
+        status.textContent = 'Grazie! La richiesta è stata inviata allo Studio Oicos.';
+      }).catch(function () {
+        status.className = 'formstatus error';
+        status.innerHTML = 'Non siamo riusciti a inviare la richiesta. Puoi scriverci a <a href="mailto:studio.oicos@gmail.com">studio.oicos@gmail.com</a>.';
+      }).finally(function () {
+        button.disabled = false;
+        button.innerHTML = 'Invia la richiesta <span class="ar">→</span>';
+      });
+    });
+
+    var toTop = document.getElementById('toTop');
+    if (toTop) {
+      var toggleToTop = function () {
+        var height = document.documentElement.scrollHeight - window.innerHeight;
+        toTop.classList.toggle('show', height > 0 && window.scrollY > height * 0.5);
+      };
+      toggleToTop();
+      window.addEventListener('scroll', toggleToTop, { passive: true });
+      toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    }
+  })();
+</script>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingButtons from '../../components/FloatingButtons.astro';
+import { SITE } from '../../data';
+
+const title = 'Area riservata condòmini — Studio Oicos';
+const description =
+  'L’area riservata dello Studio Oicos per consultare documenti, bilanci, scadenze e comunicazioni del proprio condominio.';
+const canonical = `${SITE.url}/area-riservata/`;
+---
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <Header />
+  <main class="interior-page">
+    <section class="page-hero page-hero--portal">
+      <div class="wrap portale-wrap portal-page-wrap">
+        <div class="page-hero-copy rv">
+          <div class="eyebrow"><span class="bar"></span><span class="mono">Area riservata</span></div>
+          <span class="status-chip">In configurazione</span>
+          <h1>Il condominio, <b>sempre con te.</b></h1>
+          <p>Un portale dedicato ai condòmini: bilanci, documenti, scadenze e comunicazioni, accessibili da computer o smartphone.</p>
+          <div class="portal-features">
+            <span>Documenti e rendiconti</span>
+            <span>Scadenze e rate</span>
+            <span>Verbali e comunicazioni</span>
+          </div>
+        </div>
+        <div class="pcard rv">
+          <div class="pcard-top"><div class="pl">O<b>I</b>COS · Portale</div><div class="pdot"><i></i><i></i><i></i></div></div>
+          <h2>Accedi alla tua area</h2>
+          <div class="psub">Condominio «Residenza del Fante»</div>
+          <div class="pfield"><label>Codice condòmino</label><div class="inp">RG·204·17</div></div>
+          <div class="pfield"><label>Password</label><div class="inp">••••••••••</div></div>
+          <button class="btn pbtn" type="button" id="portalDemo">Entra nel portale →</button>
+          <div style="margin-top:22px">
+            <div class="prow"><span class="pa">Rendiconto 2025 — disponibile</span><span class="pb">PDF</span></div>
+            <div class="prow"><span class="pa">Rata ordinaria · scad. 30/06</span><span class="pb">€ 142,00</span></div>
+            <div class="prow"><span class="pa">Verbale assemblea 14/05</span><span class="pb">NEW</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="sec portal-note">
+      <div class="wrap detail-lead rv">
+        <span class="mono">Prossimamente</span>
+        <h2>Uno spazio digitale ordinato, <b>chiaro e accessibile.</b></h2>
+        <p>L’area riservata è in fase di configurazione e verrà collegata al gestionale dello studio. Al momento la schermata mostra un’anteprima del servizio.</p>
+        <div class="page-actions"><a href="/contatti/" class="btn">Hai bisogno di un documento?</a></div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <FloatingButtons />
+</BaseLayout>

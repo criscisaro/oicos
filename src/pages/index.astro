@@ -4,188 +4,89 @@ import WorldGeo from '../components/WorldGeo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FloatingButtons from '../components/FloatingButtons.astro';
-import { SITE, CONTACT, STATS, SERVIZI } from '../data';
+import { SITE, CONTACT } from '../data';
 
 const title = 'Studio Oicos — Amministratori condominiali · Ragusa';
 const description =
-  'Studio Oicos amministra condomìni di ogni tipologia in provincia di Ragusa da oltre trent\'anni: gestione trasparente, contabilità chiara e un portale digitale sempre accessibile.';
+  'Studio Oicos amministra condomìni di ogni tipologia in provincia di Ragusa da oltre trent\'anni: gestione trasparente, contabilità chiara e servizi dedicati.';
 const canonical = `${SITE.url}/`;
 
+const paths = [
+  {
+    n: '01',
+    href: '/studio/',
+    eyebrow: 'Lo studio',
+    title: 'Esperienza e metodo.',
+    description: 'Oltre trent’anni di amministrazione condominiale a Ragusa, con ordine, trasparenza e competenza.',
+  },
+  {
+    n: '02',
+    href: '/servizi/',
+    eyebrow: 'Servizi',
+    title: 'Una gestione completa.',
+    description: 'Contabilità, assemblee, manutenzioni, sicurezza e tutela: un unico interlocutore per ogni esigenza.',
+  },
+  {
+    n: '03',
+    href: '/area-riservata/',
+    eyebrow: 'Area riservata',
+    title: 'Il condominio sempre con te.',
+    description: 'Il portale dedicato a documenti, bilanci, scadenze e comunicazioni dello stabile.',
+  },
+  {
+    n: '04',
+    href: '/contatti/',
+    eyebrow: 'Contatti',
+    title: 'Parliamo del tuo condominio.',
+    description: 'Contatta lo Studio Oicos per informazioni, assistenza o per richiedere un preventivo.',
+  },
+];
 ---
 <BaseLayout title={title} description={description} canonical={canonical}>
   <WorldGeo />
   <Header />
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-photo"></div>
-    <div class="hero-fade"></div>
-    <div class="wrap hero-inner">
-      <div class="hero-text">
-        <div class="hero-eyebrow"><span>Studio Oicos</span></div>
-        <h1>Amministriamo condomìni <span>a Ragusa.</span></h1>
-        <div><span class="chip">Da oltre trent'anni.</span></div>
-        <div class="hero-actions">
-          <a href="#contatti" class="btn btn--solid">Richiedi un preventivo <span class="ar">→</span></a>
-          <a href={`tel:${CONTACT.phoneHref}`} class="btn">Chiama lo studio</a>
-        </div>
-        <p class="hero-etym">«Oicos» viene dal greco <span class="gr">οἶκος</span>, «casa»: la stessa radice di <b>economia</b> — οἶκος (casa) + νόμος (regola), «le regole della casa». Amministrare un condominio è esattamente questo.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- LO STUDIO -->
-  <section class="sec studio" id="studio">
-    <span class="wc" style="width:175px;height:135px;top:9%;right:10%"></span>
-    <span class="greekword" style="bottom:13%;left:8%;font-size:1.45rem">οἶκος</span>
-    <div class="wrap">
-      <div class="head rv" style="max-width:800px">
-        <div class="eyebrow"><span class="bar"></span><span class="mono">Lo studio</span><span class="bar"></span></div>
-        <h2>L'esperienza di <b>oltre trent'anni</b> di amministrazione.</h2>
-        <p>Oicos amministra condomìni di ogni tipologia in provincia di Ragusa — residenziali, commerciali, misti e supercondomìni — con ordine, trasparenza e competenza. Perché ogni edificio è una casa da far funzionare.</p>
-        <div class="actions"><a href="#contatti" class="btn btn--solid">Sentiamoci <span class="ar">→</span></a><a href="#portale" class="btn">Area condòmini</a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVIZI -->
-  <section class="sec servizi" id="servizi">
-    <span class="wc wc-2" style="width:200px;height:155px;bottom:8%;left:6%"></span>
-    <span class="geomark" style="width:46px;height:46px;top:15%;left:7%"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="rgba(95,117,142,.3)" stroke-width="1.2"/><circle cx="24" cy="24" r="13" stroke="rgba(203,161,53,.4)" stroke-width="1.2"/><circle cx="24" cy="24" r="4" fill="rgba(203,161,53,.4)"/></svg></span>
-    <div class="wrap">
-      <div class="head rv">
-        <div class="eyebrow"><span class="bar"></span><span class="mono">Servizi</span><span class="bar"></span></div>
-        <h2>Tutto ciò che un condominio <b>richiede.</b></h2>
-        <p>Dalla gestione quotidiana alla tutela degli interessi comuni: un unico interlocutore per ogni esigenza dell'edificio.</p>
-      </div>
-      <div class="svc-grid rv">
-        {SERVIZI.map((s) => (
-          <div class="svc"><div class="idx">{s.n}</div><h3>{s.t}</h3><p>{s.d}</p></div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- PORTALE -->
-  <section class="sec portale" id="portale">
-    <div class="wrap portale-wrap">
-      <div class="head rv">
-        <div class="eyebrow"><span class="bar"></span><span class="mono">Area riservata</span><span class="bar"></span></div>
-        <h2>Il condominio, <b>sempre con te.</b></h2>
-        <p>Un portale dedicato ai condòmini: bilanci, documenti, scadenze e comunicazioni, da computer o smartphone.</p>
-      </div>
-      <div class="pcard rv">
-        <div class="pcard-top"><div class="pl">O<b>I</b>COS · Portale</div><div class="pdot"><i></i><i></i><i></i></div></div>
-        <h4>Accedi alla tua area</h4>
-        <div class="psub">Condominio «Residenza del Fante»</div>
-        <div class="pfield"><label>Codice condòmino</label><div class="inp">RG·204·17</div></div>
-        <div class="pfield"><label>Password</label><div class="inp">••••••••••</div></div>
-        <button class="btn pbtn" type="button" id="portalDemo">Entra nel portale →</button>
-        <div style="margin-top:22px">
-          <div class="prow"><span class="pa">Rendiconto 2025 — disponibile</span><span class="pb">PDF</span></div>
-          <div class="prow"><span class="pa">Rata ordinaria · scad. 30/06</span><span class="pb">€ 142,00</span></div>
-          <div class="prow"><span class="pa">Verbale assemblea 14/05</span><span class="pb">NEW</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTATTI -->
-  <section class="sec contatti" id="contatti">
-    <span class="wc wc-2" style="width:190px;height:150px;bottom:12%;right:7%"></span>
-    <span class="greekword" style="top:16%;right:8%;font-size:1.3rem">οἶκος</span>
-    <div class="wrap">
-      <div class="head rv">
-        <div class="eyebrow"><span class="bar"></span><span class="mono">Contatti</span><span class="bar"></span></div>
-        <h2>Parliamo del tuo <b>condominio.</b></h2>
-        <p>Unisciti a oltre {STATS.condomini} condomìni gestiti a Ragusa, più di {STATS.utenti} utenti serviti e {STATS.unita} unità immobiliari.</p>
-      </div>
-      <div class="cont-grid">
-        <div class="cinfo rv">
-          <div class="cline"><div class="ck">Studio</div><div class="cv">{CONTACT.street}<span>{CONTACT.zip} {CONTACT.city} ({CONTACT.province})</span></div></div>
-          <div class="cline"><div class="ck">Telefono</div><div class="cv"><a href={`tel:${CONTACT.phoneHref}`}>{CONTACT.phone}</a></div></div>
-          <div class="cline"><div class="ck">Email</div><div class="cv"><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></div></div>
-          <div class="cline"><div class="ck">Orari</div><div class="cv hours-list">{CONTACT.hours.map((row) => <span><strong>{row.days}</strong>{row.time}</span>)}</div></div>
-        </div>
-        <form class="rv" id="cform">
-          <div class="f2">
-            <div class="field"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="name" type="text" required maxlength="120" autocomplete="name" placeholder="Mario Rossi"></div>
-            <div class="field"><label for="f-tel">Telefono</label><input id="f-tel" name="phone" type="tel" maxlength="40" autocomplete="tel" placeholder="3xx xxx xxxx"></div>
+  <main>
+    <section class="hero">
+      <div class="hero-photo"></div>
+      <div class="hero-fade"></div>
+      <div class="wrap hero-inner">
+        <div class="hero-text">
+          <div class="hero-eyebrow"><span>Studio Oicos</span></div>
+          <h1>Amministriamo condomìni <span>a Ragusa.</span></h1>
+          <div><span class="chip">Da oltre trent'anni.</span></div>
+          <div class="hero-actions">
+            <a href="/contatti/" class="btn btn--solid">Richiedi un preventivo <span class="ar">→</span></a>
+            <a href={`tel:${CONTACT.phoneHref}`} class="btn">Chiama lo studio</a>
           </div>
-          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required maxlength="160" autocomplete="email" placeholder="nome@email.it"></div>
-          <div class="field"><label for="f-msg">Il tuo condominio</label><textarea id="f-msg" name="message" required maxlength="4000" placeholder="Quante unità, dove si trova, cosa cerchi..."></textarea></div>
-          <div class="hp-field" aria-hidden="true"><label for="f-website">Sito web</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-          <button class="btn btn--solid formbtn" type="submit">Invia la richiesta <span class="ar">→</span></button>
-          <p class="formstatus" id="formstatus" role="status" aria-live="polite"></p>
-          <p class="formnote">Inviando accetti il trattamento dei dati secondo la <a href="/privacy/">privacy policy</a>. Nessuna newsletter, nessuno spam.</p>
-        </form>
+          <p class="hero-etym">«Oicos» viene dal greco <span class="gr">οἶκος</span>, «casa»: la stessa radice di <b>economia</b> — οἶκος (casa) + νόμος (regola), «le regole della casa». Amministrare un condominio è esattamente questo.</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="sec home-intro">
+      <span class="wc" style="width:175px;height:135px;top:9%;right:10%"></span>
+      <div class="wrap">
+        <div class="head rv">
+          <div class="eyebrow"><span class="bar"></span><span class="mono">Studio Oicos</span><span class="bar"></span></div>
+          <h2>Ogni edificio è una casa <b>da far funzionare.</b></h2>
+          <p>Scopri lo studio, i servizi e gli strumenti dedicati ai condòmini attraverso le nuove pagine del sito.</p>
+        </div>
+        <div class="home-paths rv">
+          {paths.map((path) => (
+            <a class="home-path" href={path.href}>
+              <span class="home-path-n">{path.n}</span>
+              <span class="mono">{path.eyebrow}</span>
+              <h2>{path.title}</h2>
+              <p>{path.description}</p>
+              <span class="home-path-link">Scopri <span aria-hidden="true">→</span></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
 
   <Footer />
   <FloatingButtons />
 </BaseLayout>
-
-<script is:inline>
-  (function () {
-    var hdr = document.getElementById('hdr');
-    var onScroll = function () { hdr.classList.toggle('scrolled', window.scrollY > 40); };
-    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
-
-    var mobile = document.getElementById('mobile');
-    var burger = document.getElementById('burger');
-    burger.addEventListener('click', function () { mobile.classList.add('open'); burger.setAttribute('aria-expanded', 'true'); });
-    document.getElementById('mclose').addEventListener('click', function () { mobile.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); });
-    mobile.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mobile.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }); });
-
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
-
-    var demo = document.getElementById('portalDemo');
-    if (demo) demo.addEventListener('click', function () { alert('Demo — il portale verrà collegato al gestionale dello studio.'); });
-
-    var form = document.getElementById('cform');
-    if (form) form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var b = form.querySelector('button[type=submit]');
-      var status = document.getElementById('formstatus');
-      var nome = document.getElementById('f-nome').value.trim();
-      var telefono = document.getElementById('f-tel').value.trim();
-      var email = document.getElementById('f-email').value.trim();
-      var messaggio = document.getElementById('f-msg').value.trim();
-      var website = document.getElementById('f-website').value.trim();
-
-      b.disabled = true;
-      b.innerHTML = 'Invio in corso…';
-      status.className = 'formstatus';
-      status.textContent = '';
-
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: nome, phone: telefono, email: email, message: messaggio, website: website }),
-      }).then(function (response) {
-        if (!response.ok) throw new Error('Invio non riuscito');
-        form.reset();
-        status.className = 'formstatus success';
-        status.textContent = 'Grazie! La richiesta è stata inviata allo Studio Oicos.';
-      }).catch(function () {
-        status.className = 'formstatus error';
-        status.innerHTML = 'Non siamo riusciti a inviare la richiesta. Puoi scriverci a <a href="mailto:studio.oicos@gmail.com">studio.oicos@gmail.com</a>.';
-      }).finally(function () {
-        b.disabled = false;
-        b.innerHTML = 'Invia la richiesta <span class="ar">→</span>';
-      });
-    });
-
-    var t = document.getElementById('toTop');
-    if (t) {
-      var onS = function () { var h = document.documentElement.scrollHeight - window.innerHeight; t.classList.toggle('show', h > 0 && window.scrollY > h * 0.5); };
-      onS(); window.addEventListener('scroll', onS, { passive: true });
-      t.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    }
-  })();
-</script>

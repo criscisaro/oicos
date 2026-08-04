@@ -37,7 +37,7 @@ const faqRight = FAQ.slice(4);
         <div class="head rv">
           <div class="eyebrow"><span class="bar"></span><span class="mono">Domande frequenti</span><span class="bar"></span></div>
           <h1>Le risposte alle domande <b>più comuni.</b></h1>
-          <p>Informazioni chiare sui temi che ci vengono richiesti più spesso. Per una situazione specifica, puoi sempre <a href="/#contatti">contattare lo studio</a>.</p>
+          <p>Informazioni chiare sui temi che ci vengono richiesti più spesso. Per una situazione specifica, puoi sempre <a href="/contatti/">contattare lo studio</a>.</p>
         </div>
         <div class="faq-list rv">
           <div class="faq-col">
@@ -57,31 +57,3 @@ const faqRight = FAQ.slice(4);
   <Footer />
   <FloatingButtons />
 </BaseLayout>
-
-<script is:inline>
-  (function () {
-    var hdr = document.getElementById('hdr');
-    var onScroll = function () { hdr.classList.toggle('scrolled', window.scrollY > 40); };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    var mobile = document.getElementById('mobile');
-    var burger = document.getElementById('burger');
-    burger.addEventListener('click', function () { mobile.classList.add('open'); burger.setAttribute('aria-expanded', 'true'); });
-    document.getElementById('mclose').addEventListener('click', function () { mobile.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); });
-    mobile.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', function () { mobile.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }); });
-
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.rv').forEach(function (element) { io.observe(element); });
-
-    var toTop = document.getElementById('toTop');
-    if (toTop) {
-      var toggleToTop = function () { var height = document.documentElement.scrollHeight - window.innerHeight; toTop.classList.toggle('show', height > 0 && window.scrollY > height * 0.5); };
-      toggleToTop();
-      window.addEventListener('scroll', toggleToTop, { passive: true });
-      toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    }
-  })();
-</script>

@@ -3,6 +3,7 @@ import { SEO } from 'astro-seo';
 import '../styles.css';
 import CookieBanner from '../components/CookieBanner.astro';
 import AccessibilityWidget from '../components/AccessibilityWidget.astro';
+import SiteScripts from '../components/SiteScripts.astro';
 import { SITE, CONTACT, STATS } from '../data';
 
 interface Props {
@@ -20,7 +21,7 @@ const image = `${SITE.url}/og-image.jpg`;
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  '@id': `${SITE.url}/#studio`,
+  '@id': `${SITE.url}/#organization`,
   name: SITE.name,
   legalName: SITE.legalName,
   url: SITE.url,
@@ -113,5 +114,6 @@ const orgSchema = {
   <slot />
   <CookieBanner />
   <AccessibilityWidget />
+  <SiteScripts />
 </body>
 </html>
